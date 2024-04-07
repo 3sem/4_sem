@@ -48,15 +48,17 @@ public:
      * @return LamportTime value;
      */
     LamportTime receive_event(LamportTime received_time) {
+	    LamportTime current_time;
         do {
             //RECEIVE_EVENT:
-            auto current_time = get_time();
-            // If received time is old, do nothing.
-            if (received_time < current_time) {
+            current_time = get_time();
+            // If received time is old, inc local time to 1 and (possibly) send the 'update' event.
+            
+            if (received_time <= current_time) {
                 return time_.fetch_add(1);
             }
         // Ensure that local timer is at least one ahead.
-        } while (!time_.compare_exchange_strong(current_time, received_time + 1));  // https://vk.com/@habr-kak-rabotat-s-atomarnymi-tipami-dannyh-v-c
+        } while (time_.compare_exchange_strong(current_time, received_time));  // https://vk.com/@habr-kak-rabotat-s-atomarnymi-tipami-dannyh-v-c
 
         return received_time + 1;
     }
