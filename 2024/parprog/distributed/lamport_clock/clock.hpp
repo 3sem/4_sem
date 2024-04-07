@@ -53,7 +53,7 @@ public:
             auto current_time = get_time();
             // If received time is old, do nothing.
             if (received_time < current_time) {
-                return current_time;
+                return time_.fetch_add(1);;
             }
         // Ensure that local timer is at least one ahead.
         } while (!time_.compare_exchange_strong(current_time, received_time + 1));  // https://vk.com/@habr-kak-rabotat-s-atomarnymi-tipami-dannyh-v-c
