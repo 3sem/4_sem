@@ -53,7 +53,7 @@ public:
             auto current_time = get_time();
             // If received time is old, do nothing.
             if (received_time < current_time) {
-                return time_.fetch_add(1);;
+                return time_.fetch_add(1);
             }
         // Ensure that local timer is at least one ahead.
         } while (!time_.compare_exchange_strong(current_time, received_time + 1));  // https://vk.com/@habr-kak-rabotat-s-atomarnymi-tipami-dannyh-v-c
@@ -62,9 +62,10 @@ public:
     }
 
 private:
-    std::atomic<LamportTime> time_; // cppreference.com : If one thread writes to an atomic object while another thread reads from it,
-                                    // the behavior is well-defined (see memory model for details on data races).
-                                    // Non-functional side effect: operations with atomics are much slower, than with ordinary types
+    // cppreference.com : If one thread writes to an atomic object while another thread reads from it,
+    // the behavior is well-defined (see memory model for details on data races).
+    // Non-functional side effect: operations with atomics are much slower, than with ordinary types
+    std::atomic<LamportTime> time_;
 };
 
 #endif //LAMPORT_CLOCK_LAMPORT_CLOCK_H
