@@ -1,6 +1,5 @@
 #include "clock.hpp"
 #include <iostream>
-#include <string>
 
 void assert_eq(int retcode, int arg) {
   std::cout << ((retcode == arg) ? "True":"False") 
@@ -17,9 +16,12 @@ void test1() {
   
   clock.receive_event(2);
   assert_eq(clock.get_time(), 5);
-
-  clock.receive_event(5);
+  
+  clock.receive_event(1);
   assert_eq(clock.get_time(), 6);
+  
+  clock.receive_event(6);
+  assert_eq(clock.get_time(), 7);
 }
 
 int main() {
