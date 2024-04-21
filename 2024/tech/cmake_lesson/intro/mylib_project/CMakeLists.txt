@@ -6,7 +6,7 @@ project(mylib_project)				# Название проекта
 
 set(SOURCE_EXE main.cpp)			# Установка переменной со списком исходников
 
-include_directories(foo)			# Расположение заголовочных файлов
+include_directories(lib)			# Расположение заголовочных файлов
 
 add_executable(main ${SOURCE_EXE})	# Создает исполняемый файл с именем main
 
