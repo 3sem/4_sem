@@ -1,1 +1,6 @@
+ 
+1. Реализовать на С++ обобщенный парсер путей на графе c КС-ограничениями, использующий GLL как основу (https://github.com/FormalLanguageConstrainedPathQuerying/GLL4Graph).
 
+2. Реализовать GLL-парсер на C++ (https://dl.acm.org/doi/abs/10.1145/3623476.3623521, https://dspace.spbu.ru/bitstream/11701/42730/2/Diplom_Vadim_Abzalov.pdf).
+
+3. Реализовать на С++ обобщенный парсер путей на графе c КС-ограничениями, использующий грамматики с контекстами как основу (https://arxiv.org/pdf/1405.5598).
